@@ -5,11 +5,11 @@
   align-items: center;
   height: 100vh;
 }
-.Light {
+.Light-Mode {
   background-color: yellow;
 }
 
-.Dark {
+.Dark-Mode {
   background-color: black;
 }
 

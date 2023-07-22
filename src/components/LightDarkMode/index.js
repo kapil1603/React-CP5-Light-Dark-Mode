@@ -2,37 +2,31 @@ import {Component} from 'react'
 import './index.css'
 
 class LightDarkMode extends Component {
-  state = {dark: 'Dark Mode', light: 'Light Mode'}
+  state = {dark: false}
 
-  darkButton = () => {
-    this.setState(pervState => ({light: pervState.light}))
+  onClickButton = () => {
+    this.setState(prevState => ({isDarkMode: !prevState.isDarkMode}))
   }
 
-  lightButton = () => {
-    this.setState(pervState => ({dark: pervState.dark}))
+  checkMark = () => {
+    const {dark} = this.state
+    return dark ? 'Dark Mode' : 'Light Mode'
+  }
+
+  colorClass = () => {
+    const {dark} = this.state
+    return dark ? 'Dark-Mode' : 'Light-Mode'
   }
 
   render() {
-    const {dark, light} = this.state
-    let butt
-    if (dark === 'Dark Mode') {
-      butt = (
-        <button className="button" type="button" onClick={this.lightButton}>
-          {light}
-        </button>
-      )
-    } else {
-      butt = (
-        <button className="button" type="button" onClick={this.darkButton}>
-          {dark}
-        </button>
-      )
-    }
+    const darkMode = this.checkDark()
     return (
       <div className="container">
-        <div className="sub-container">
+        <div className={`sub-container ${this.colorClass()}`}>
           <h1 className="heading">Click To Change Mode</h1>
-          {butt}
+          <button className="button" type="button" onClick={this.onClickButton}>
+            {darkMode}
+          </button>
         </div>
       </div>
     )
